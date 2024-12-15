@@ -4,18 +4,12 @@ import Login from './Login'
 // import { bodyBackground } from '../utils/constants'
 import Footer from './Footer'
 
+
 function Body() {
   return (
-    <div className='bg-black'>
-      {/* <div>
-         <Header/>
-      </div> */}
-      
+    <div className='bg-red-600'>
       <Login/>
-      <div>
-        <Footer/>
-      </div>
-      
+      <Footer/>
     </div>
     
     
