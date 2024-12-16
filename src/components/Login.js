@@ -2,8 +2,8 @@ import React, { useState, useRef} from 'react'
 import Header from './Header'
 import { loginBackground } from '../utils/constants'
 import { credentialsValidation,fullNameValidation } from '../utils/validationForm';
-import Footer from './Footer'
-
+import { createUserWithEmailAndPassword} from 'firebase/auth';
+import { auth } from '../utils/firebase';
 
 
 function Login() {
@@ -24,12 +24,31 @@ function Login() {
   const handleFormButtonClick=()=>{
 
     seterrMsgCredentials(credentialsValidation(email.current.value, password.current.value));
-    console.log('email',email.current.value);
-    console.log('password', password.current.value);
-     isSignUp && seterrMsgFullName(fullNameValidation(fullName.current.value));
+    //console.log('email',email.current.value);
+    //console.log('password', password.current.value);
+    isSignUp && seterrMsgFullName(fullNameValidation(fullName.current.value));
 
      if(errMsgCredentials || errMsgFullName){
       return;
+     }
+
+     if (isSignUp){
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed up 
+          alert('successfully signed up');
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
+
+     }
+     else{
+
      }
 
   }
