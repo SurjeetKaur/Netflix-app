@@ -36,7 +36,7 @@ function Login() {
   return (
     <div>
         <div className='flex flex-wrap '>
-            <div className='absolute inset-0 z-0 flex flex-wrap'> */}
+            <div className='absolute inset-0 z-0 flex flex-wrap'> 
                 <img src={loginBackground} alt="background" className="object-cover w-full absolute" />
            </div> 
             <div className="relative z-10 w-full">
@@ -48,20 +48,20 @@ function Login() {
                 {/* Additional field for Sign Up */}
                 {
                   isSignUp &&(
-                  <input type="text" placeholder="Full Name"  ref={fullName} className='p-4 mx-2 my-2 w-full bg-gray-700'/>          
+                  <input type="text" placeholder="Full Name"  ref={fullName} className='p-4 mx-2 my-2 w-full bg-gray-600'/>          
                   ) 
                 }
 
                 {/* Common fields for Sign In and Sign Up */}
-                <input type="text" placeholder='Email Address'  ref={email}className='p-4 mx-2 my-2 w-full bg-gray-700' />
-                <input type="password" placeholder={isSignUp ? 'Set password': 'Enter password'}  ref={password} className='p-4 mx-2 my-2 w-full bg-gray-700'/>
+                <input type="text" placeholder='Email Address'  ref={email}className='p-4 mx-2 my-2 w-full bg-gray-600' />
+                <input type="password" placeholder={isSignUp ? 'Set password': 'Enter password'}  ref={password} className='p-4 mx-2 my-2 w-full bg-gray-600'/>
 
                 {/* {
                   isSignUp?
                    <input type="password" placeholder=' Set Password' ref={password} className='p-4 mx-2  my-4 w-full bg-gray-700' />
                   :  <input type="password" placeholder='Password' ref={password} className='p-4 mx-2  my-4 w-full bg-gray-700' />
                 } */}
-                <p className='text-red-700 font-bold p-4 mx-2 my-2 w-full'>{errMsgCredentials}{isSignUp && errMsgFullName}</p>
+                <p className='text-red-700 font-bold p-4 mx-2 my-2 w-full'>{errMsgCredentials} {isSignUp && errMsgFullName}</p>
        
                 <button className='p-4 mx-2 my-2 w-full bg-red-700' onClick={handleFormButtonClick}>
                   {isSignUp ?"Sign Up":"Sign In"}

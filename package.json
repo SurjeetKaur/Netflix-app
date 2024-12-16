@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "cra-template": "1.2.0",
+    "firebase": "^11.1.0",
     "jest-environment-jsdom": "^29.7.0",
     "netflix-app": "file:",
     "react": "^19.0.0",
