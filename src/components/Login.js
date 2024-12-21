@@ -31,17 +31,24 @@ function Login() {
 
   const handleFormButtonClick=()=>{
 
-    seterrMsgCredentials(credentialsValidation(email.current.value, password.current.value));
+    seterrMsgCredentials();
+    const credError= credentialsValidation(email.current?.value, password.current?.value);
     //console.log('email',email.current.value);
     //console.log('password', password.current.value);
-    isSignUp && seterrMsgFullName(fullNameValidation(fullName.current.value));
-
-     if(errMsgCredentials || errMsgFullName){
+    if(credError){
+      seterrMsgCredentials(credError);
       return;
-     }
+      }
+      console.log(credError,"cred error");
+
+    const fullNameError=fullNameValidation(fullName.current?.value || "");
+    if( isSignUp && fullNameError){
+      seterrMsgFullName(fullNameError);
+      return;
+      }
 
      if (isSignUp){
-      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      createUserWithEmailAndPassword(auth, email.current?.value, password.current?.value)
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
@@ -64,6 +71,7 @@ function Login() {
             photoURL:photoURL
           })
         )
+        dispatch("/browse")
           // ...
         }).catch((error) => {
           // An error occurred
@@ -87,6 +95,14 @@ function Login() {
             // Signed in 
             const user = userCredential.user;
             console.log("user sucessfully signed in" ,user);
+            const {uid,displayName,email,photoURL}=auth.currentUser
+            dispatch(addUser({
+              uid:uid,
+              displayName:displayName,
+              email:email,
+              photoURL:photoURL
+            })
+          )
             navigate("/browse")
             // ...setTimeout(()=>{
               //setSuccessMsg('Successfully Signed In');

@@ -30,8 +30,9 @@ function Header() {
           </div>
           {user && 
           <div className='flex flex-row'>
-            <img className='w-12 h-12 m-4 mt-6 rounded-full' src={user.photoURL} alt="user profile" />
-            <button className='font-bold text-white text-lg mr-2' onClick={handleLogOut}>Sign Out</button>
+            <p className='p-4 text-white font-bold text-lg pt-8'> Hi {user.displayName} </p>
+            <img className='w-8 h-8 m-4 mt-8 rounded-sm' src={user.photoURL} alt="user profile" />
+            <button className=' text-white text-lg mr-2 hover:underline' onClick={handleLogOut}>Sign Out</button>
           </div>}
         </div>         
     </div>
