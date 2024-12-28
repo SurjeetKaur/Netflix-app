@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='bg-black justify-center py-12 mx-auto text-white h-24 flex flex-wrap w-full absolute'>
+    <div className='bg-black justify-center py-12 mx-auto text-white h-24 flex flex-wrap w-full z-10 relative'>
       <h2>Footer</h2>
     </div>
   )

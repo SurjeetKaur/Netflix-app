@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { userPhoto } from '../utils/constants';
+import Footer from'./Footer';
 
 
 function Login() {
@@ -39,7 +40,6 @@ function Login() {
       seterrMsgCredentials(credError);
       return;
       }
-      console.log(credError,"cred error");
 
     const fullNameError=fullNameValidation(fullName.current?.value || "");
     if( isSignUp && fullNameError){
@@ -52,7 +52,7 @@ function Login() {
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
-          console.log("user sucessfully signed up" ,user);
+          //console.log("user sucessfully signed up" ,user);
           // setTimeout(()=>{
           //   setSuccessMsg('Successfully Signed Up');
           //   },1000);
@@ -62,7 +62,7 @@ function Login() {
           displayName: fullName.current.value, photoURL:userPhoto
         }).then(() => {
           // Profile updated!
-          console.log("profile updated");
+          //console.log("profile updated");
           const {uid,displayName,email,photoURL}=auth.currentUser
           dispatch(addUser({
             uid:uid,
@@ -75,7 +75,7 @@ function Login() {
           // ...
         }).catch((error) => {
           // An error occurred
-          console.log(error,'error occured during updating profile');
+          //console.log(error,'error occured during updating profile');
           seterrMsgCredentials(error);
           // ...
         });
@@ -119,14 +119,12 @@ function Login() {
   }
   return (
     <div>
-        <div className='flex flex-wrap '>
-            <div className='absolute inset-0 z-0 flex flex-wrap'> 
-                <img src={loginBackground} alt="background" className="object-cover w-full absolute" />
-           </div> 
-            <div className="relative z-10 w-full">
-              <Header />
-            </div>
-            <form onSubmit={(e)=>{e.preventDefault()}} className='w-11/12 sm:w-4/12 px-12 py-4 my-24 mx-auto relative text-white rounded-lg bg-black bg-opacity-80 flex flex-col'>
+        <div className='flex flex-wrap'>
+          <Header />
+          <div className='flex flex-wrap h-screen md:h-5/6 '> 
+              <img src={loginBackground} alt="background" className="object-cover w-full  bg-no-repeat" />
+          </div>  
+            <form onSubmit={(e)=>{e.preventDefault()}} className='w-11/12 sm:w-4/12 px-12 py-4 mt-36  sm: mx-auto absolute right-0 left-0 text-white rounded-lg bg-black bg-opacity-80 flex flex-col'>
                 <h1 className='font-bold text-3xl py-2 text-left'>{isSignUp? "Sign Up": "Sign In"}</h1>
 
                 {/* Additional field for Sign Up */}
@@ -160,6 +158,7 @@ function Login() {
             </form>
         </div>
     </div>
+
   )
 }
 

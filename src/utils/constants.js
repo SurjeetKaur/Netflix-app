@@ -3,3 +3,12 @@ export const bodyBackground="https://assets.nflxext.com/ffe/siteui/vlv3/9ce7a35d
 export const loginBackground="https://assets.nflxext.com/ffe/siteui/vlv3/729ce5c2-d831-436a-8c9d-f38fea0b99b3/web/CA-en-20241209-TRIFECTA-perspective_7c8dee77-e6ce-46ab-8282-c1a771cb5aad_large.jpg";
 export const netflixIcon="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2023.ico";
 export const userPhoto="https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.webp"
+export const movieAPIOptions={
+  method: 'GET',
+    headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNzFhYjZhNjc3N2M4N2IyMzc2MWFhODFhNGNiYWRiOSIsIm5iZiI6MTczNDgxMzUyNi4yMjMsInN1YiI6IjY3NjcyNzU2YWZmNWE3ZDY0MTc0ZTFiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.f3uBBw0volKlVBkGyQTdW4c6IlZ9csBO6WPpTRFs58E'
+    }
+};
+
+
