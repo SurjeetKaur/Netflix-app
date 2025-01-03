@@ -16,6 +16,8 @@ function Login() {
   const [errMsgCredentials,seterrMsgCredentials]= useState(null);
   const [errMsgFullName,seterrMsgFullName]= useState(null);
   const [successMsg,setSuccessMsg]=useState(null);
+  const [showPassword,setShowPassword]=useState(false);
+
 
   const fullName=useRef(null);  //useRef Hook
   const email=useRef(null);
@@ -28,6 +30,10 @@ function Login() {
     seterrMsgCredentials(null);
     seterrMsgFullName(null);
     setSuccessMsg(null);
+  }
+  const handleVisibilityPassword=()=>{
+    setShowPassword(!showPassword);
+    
   }
 
   const handleFormButtonClick=()=>{
@@ -122,7 +128,7 @@ function Login() {
         <div className='flex flex-wrap'>
           <Header />
           <div className='flex flex-wrap h-screen md:h-5/6 '> 
-              <img src={loginBackground} alt="background" className="object-cover w-full  bg-no-repeat" />
+              <img src={loginBackground} alt="background" className="object-cover w-full bg-no-repeat" />
           </div>  
             <form onSubmit={(e)=>{e.preventDefault()}} className='w-11/12 sm:w-4/12 px-12 py-4 mt-36  sm: mx-auto absolute right-0 left-0 text-white rounded-lg bg-black bg-opacity-80 flex flex-col'>
                 <h1 className='font-bold text-3xl py-2 text-left'>{isSignUp? "Sign Up": "Sign In"}</h1>
@@ -135,20 +141,27 @@ function Login() {
                 }
 
                 {/* Common fields for Sign In and Sign Up */}
-                <input type="text" placeholder='Email Address'  ref={email}className='p-4 mx-2 my-2 w-full bg-gray-600' />
-                <input type="password" placeholder={isSignUp ? 'Set password': 'Enter password'}  ref={password} className='p-4 mx-2 my-2 w-full bg-gray-600'/>
+                <div className='flex w-full hover:border-white hover:border-2'>
+                  <input type="text" placeholder='Email Address'  ref={email} className='p-4 mx-2 my-2 w-full bg-gray-600 focus:outline-none active:outline-none'/>
+                </div>
+                <div className='flex w-full hover:border-white hover:border-2 '>
+                  <input type={showPassword?"text":"password"} placeholder={isSignUp ? 'Set password': 'Enter password'}  ref={password} className='p-4 ml-2 my-2 bg-gray-600 w-full focus:outline-none active:outline-none'/>
+                 <button className='h-14 bg-gray-600 my-2 ml-0 pr-2 mr-2 flex-grow' onClick={handleVisibilityPassword}>{showPassword ? <span className='fa fa-eye-slash text-1xl m-0'></span>:<span className='fa fa-eye text-1xl m-0'></span>}</button> 
+                </div> 
 
                 {/* {
                   isSignUp?
                    <input type="password" placeholder=' Set Password' ref={password} className='p-4 mx-2  my-4 w-full bg-gray-700' />
                   :  <input type="password" placeholder='Password' ref={password} className='p-4 mx-2  my-4 w-full bg-gray-700' />
                 } */}
-                <p className='text-red-700 font-bold p-4 mx-2 my-2 w-full'>{errMsgCredentials} {isSignUp && errMsgFullName}</p>
+                <p className='text-red-700 font-bold p-4 mx-2 my-2 w-full text-center'>{errMsgCredentials} {isSignUp && errMsgFullName}</p>
                 {successMsg && <div className='text-green-500 font-bold p-2 fixed bottom-0 left-0  right-0 text-center bg-black shadow-md w-auto'>{successMsg}</div>} 
-       
-                <button className='p-4 mx-2 my-2 w-full bg-red-700' onClick={handleFormButtonClick}>
-                  {isSignUp ?"Sign Up":"Sign In"}
-                </button>
+  
+                 <div className='flex'>
+                    <button className='p-4 mx-2 my-2 w-full bg-red-700 hover:bg-red-600' onClick={handleFormButtonClick}>
+                      {isSignUp ?"Sign Up":"Sign In"}
+                    </button>
+                 </div>
                 <p className='p-4 cursor-pointer' onClick={toggleSignInForm}>
                     {isSignUp? 
                     <span className='flex flex-row justify-center'><span>Already have an account? </span> <span className="hover:underline pl-2">Sign in now.</span></span> 

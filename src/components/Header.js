@@ -11,6 +11,7 @@ function Header() {
   //console.log(user,'user in browse');
   const dispatch=useDispatch();
   const navigate=useNavigate();
+  
   const handleLogOut=()=>{
       signOut(auth).then(() => {
         // Sign-out successful.
@@ -31,7 +32,7 @@ function Header() {
       {user && 
       <div className='flex flex-row'>
         <p className='p-4 text-white font-bold text-lg pt-8'> Hi {user.displayName} </p>
-        <img className='w-8 h-8 m-4 mt-8 rounded-sm' src={user.photoURL} alt="user profile" />
+        <img className='w-8 h-8 m-4 mt-8 rounded-sm' src={user.photoURL} alt="user profile"/>
         <button className=' text-white text-lg mr-2 hover:underline' onClick={handleLogOut}>Sign Out</button>
       </div>}
     </div>         
@@ -40,3 +41,6 @@ function Header() {
 }
 
 export default Header
+
+
+
